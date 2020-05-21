@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en">
-{% load staticfiles %}
 <head>
+  {% load staticfiles %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Jekyll v4.0.1">
-  <title>Blog Zeeshan Arshad</title>
+  <title>{{ blog.title }}</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/">
   <!-- Bootstrap core CSS -->
@@ -58,42 +58,48 @@
       </div>
     </nav>
   </header>
+  <!-- Page Content -->
+  <div class="container">
 
-  <main role="main">
-    <div class="container">
-      <h1 class="text-center pt-3 pb-3">Welcome To Zeeshan's Blog</h1>
-      <h2>Latest Posts</h2>
-      <hr>
-      {% for blog in blogs %}
-      <div class="card mb-12" style=" max-width: auto;">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <a href="{% url 'detail' blog.id %}">
-              <img src="{{ blog.image.url }}" class="card-img" alt="{{ blog.title }} picture">
-            </a>
-          </div>
-          <div class="col-md-8 float-right">
-            <div class="card-body">
-              <a href="{% url 'detail' blog.id %}"><h5 class="card-title">{{ blog.title }}</h5></a>
-              <p class="card-text text-justify">{{ blog.summary }} ...</p>
-              <hr>
-              <p  class="card-text " style="display: inline-block;"><small class="text-muted">Last updated :<strong class="text-danger"> {{ blog.pub_date_pretty }}</strong></small></p>
-              <a class="btn btn-info float-right " href="{% url 'detail' blog.id %}">Read More</a>
-            </div>
-          </div>
+    <div class="row">
+
+      <!-- Post Content Column -->
+      <div class="col-lg-12 ">
+
+        <!-- Title -->
+        <h1 class="mt-4 text-center">{{ blog.title }}</h1>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p class="text-center">Posted on {{ blog.pub_date}}</p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        <div class="text-center">
+          <a href="{{blog.image.url}}" target="_blank">
+            <img class="img-fluid rounded" src="{{blog.image.url}}" alt="{{blog.title}} picture">
+          </a>
         </div>
+        <hr>
+
+        <!-- Post Content -->
+        <p class="lead">{{blog.summary}}</p>
+
+        <p class="text-justify">{{blog.body}}</p>
+        <hr>
       </div>
-      <br>
-      {% endfor %}
     </div>
-  </main>
+  </div>
   <footer class="text-muted">
     <div class="container text-center">
-      <p>© Zeeshan Arshad {% now 'Y' %}</p>
+      <p> © Zeeshan Arshad {% now 'Y' %}</p>
     </div>
   </footer>
-  <!--JS, Popper.js, and jQuery -->
+  <!-- JS, Popper.js, and jQuery -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-  </html>
+</body>
+</html>

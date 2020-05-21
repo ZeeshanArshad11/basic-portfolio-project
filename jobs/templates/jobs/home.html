@@ -2,6 +2,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+  {% load staticfiles %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -51,8 +52,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto">
-          <a class="nav-item nav-link " href="#">Twitter</a>
-          <a class="nav-item nav-link" href="#">Resume</a>
+          <a class="nav-item nav-link " href="https://twitter.com/ZeeArshad">Twitter</a>
+          <a class="nav-item nav-link" href="{% static 'Resume.pdf' %}">Resume</a>
           <a class="nav-item nav-link" href="{% url 'blog' %}">Blog</a>
         </div>
       </div>
@@ -61,23 +62,27 @@
 
   <main role="main">
 
-    <section class="jumbotron text-center ">
+    <section class="jumbotron text-center">
       <div class="container">
         <h1>Hi! I'm Zeeshan</h1>
         <p class="lead text-muted">Hey Im Zeeshan Arshad. I'm a Django web developer and i love to make an awosome website .</p>
         <p>
           <a href="mailto:zeeshanarshad11@gmail.com" class="btn btn-primary my-2">Email Me</a>
         </p>
+        <img class='' src="{% static 'Pic.jpg' %}" height = 200 alt="Zeeshan Arshad Picture"/>
       </div>
     </section>
-
-    <div class="album py-5 ">
+    <div class="album">
       <div class="container">
+        <h3>Latest Projects</h3>
+        <hr>
         <div class="row">
           {% for job in jobs %}
           <div class="col-md-4 pb-3">
             <div class="card h-100" style="width: 22rem; height: 29rem;">
-              <img src="{{ job.image.url }}" alt="{{ job.title }} picture" class="card-img-top img-thumbnail">
+              <a href="{{job.image.url}}" target="_blank">
+                <img src="{{ job.image.url }}" alt="{{ job.title }} picture" class="card-img-top img-thumbnail">
+              </a>
               <div class="card-body">
                 <h5 class="card-title text-center">{{ job.title }}</h5>
                 <p class="card-text text-justify">{{ job.summary }}</p>
